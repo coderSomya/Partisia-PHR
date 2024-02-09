@@ -16,8 +16,8 @@
  *
  */
 
-import { CLIENT } from "../../../playground/average-salary-frontend/src/main/AppState";
-import { ConnectedWallet } from "../../../playground/average-salary-frontend/src/main/ConnectedWallet";
+import { CLIENT } from "../../AppState";
+import { ConnectedWallet } from "../../ConnectedWallet";
 import { ShardId } from "./TransactionData";
 
 export type CallbackPromise = Promise<string>;
@@ -31,7 +31,8 @@ export type CallbackPromise = Promise<string>;
 export class TransactionApi {
   public static readonly TRANSACTION_TTL: number = 60_000;
   private static readonly DELAY_BETWEEN_RETRIES = 1_000;
-  private static readonly MAX_TRIES = TransactionApi.TRANSACTION_TTL / this.DELAY_BETWEEN_RETRIES;
+  private static readonly MAX_TRIES =
+    TransactionApi.TRANSACTION_TTL / this.DELAY_BETWEEN_RETRIES;
   private readonly userWallet: ConnectedWallet;
   private readonly fetchUpdatedState: () => void;
 
@@ -55,7 +56,10 @@ export class TransactionApi {
       )
       .then((putResponse) => {
         if (putResponse.putSuccessful) {
-          return this.waitForTransaction(putResponse.shard, putResponse.transactionHash)
+          return this.waitForTransaction(
+            putResponse.shard,
+            putResponse.transactionHash
+          )
             .then(() => {
               this.fetchUpdatedState();
               return putResponse.transactionHash;
@@ -78,26 +82,34 @@ export class TransactionApi {
     identifier: string,
     tryCount = 0
   ): Promise<void> => {
-    return CLIENT.getExecutedTransaction(shard, identifier).then((executedTransaction) => {
-      if (executedTransaction == null) {
-        if (tryCount >= TransactionApi.MAX_TRIES) {
+    return CLIENT.getExecutedTransaction(shard, identifier).then(
+      (executedTransaction) => {
+        if (executedTransaction == null) {
+          if (tryCount >= TransactionApi.MAX_TRIES) {
+            throw new Error(
+              'Transaction "' +
+                identifier +
+                '" not finalized at shard "' +
+                shard +
+                '"'
+            );
+          } else {
+            return this.delay(TransactionApi.DELAY_BETWEEN_RETRIES).then(() =>
+              this.waitForTransaction(shard, identifier, tryCount + 1)
+            );
+          }
+        } else if (!executedTransaction.executionSucceeded) {
           throw new Error(
-            'Transaction "' + identifier + '" not finalized at shard "' + shard + '"'
+            'Transaction "' + identifier + '" failed at shard "' + shard + '"'
           );
         } else {
-          return this.delay(TransactionApi.DELAY_BETWEEN_RETRIES).then(() =>
-            this.waitForTransaction(shard, identifier, tryCount + 1)
-          );
+          return Promise.all(
+            executedTransaction.events.map((e) =>
+              this.waitForTransaction(e.destinationShard, e.identifier)
+            )
+          ).then(() => undefined);
         }
-      } else if (!executedTransaction.executionSucceeded) {
-        throw new Error('Transaction "' + identifier + '" failed at shard "' + shard + '"');
-      } else {
-        return Promise.all(
-          executedTransaction.events.map((e) =>
-            this.waitForTransaction(e.destinationShard, e.identifier)
-          )
-        ).then(() => undefined);
       }
-    });
+    );
   };
 }
