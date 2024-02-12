@@ -49,8 +49,7 @@ const Admin = () => {
               fontSize: "16px",
               fontWeight: "bold",
               transition: "all 0.2s ease-in-out",
-              marginRight: "1vw",
-              "&:hover": {
+              marginRight: "1vw", "&:hover": {
                 backgroundColor: "#f2f2f2",
                 transform: "scale(1.05)",
               },

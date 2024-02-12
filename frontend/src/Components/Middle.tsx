@@ -1,4 +1,4 @@
-import { List, ListItem, Paper } from "@mui/material";
+import { Button, List, ListItem, Paper } from "@mui/material";
 import folder from "../assets/images/folder.png";
 import refresh from "../assets/images/refresh.png";
 import React from "react";
@@ -45,6 +45,9 @@ function Middle() {
                 Aditya Jha
               </span>
             </span>
+            <Button variant="contained" color="primary" style={{ marginLeft: "663px", height: '40px' }}>
+              Approve
+            </Button>
           </ListItem>
         </List>
       </Paper>
@@ -77,8 +80,13 @@ function Middle() {
               >
                 Moulik Singh Rajput
               </span>
+              
             </span>
+            <Button variant="contained" color="primary" style={{ marginLeft: "600px", height: '40px' }}>
+              Approve
+            </Button>
           </ListItem>
+          
         </List>
       </Paper>
 
@@ -111,6 +119,9 @@ function Middle() {
                 Soumyajit
               </span>
             </span>
+            <Button variant="contained" color="primary" style={{ marginLeft: "670px", height: '40px' }}>
+              Approve
+            </Button>
           </ListItem>
         </List>
       </Paper>
@@ -144,6 +155,9 @@ function Middle() {
                 Manas Jha
               </span>
             </span>
+            <Button variant="contained" color="primary" style={{ marginLeft: "663px", height: '40px' }}>
+              Approve
+            </Button>
           </ListItem>
         </List>
       </Paper>
@@ -177,6 +191,9 @@ function Middle() {
                 Raunaq Bose
               </span>
             </span>
+            <Button variant="contained" color="primary" style={{ marginLeft: "644px", height: '40px' }}>
+              Approve
+            </Button>
           </ListItem>
         </List>
       </Paper>
