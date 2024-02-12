@@ -1,21 +1,3 @@
-/*
- * Copyright (C) 2022 - 2023 Partisia Blockchain Foundation
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- */
-
 import { AbiParser } from "@partisiablockchain/abi-client";
 import { Buffer } from "buffer";
 import PartisiaSdk from "partisia-sdk";
@@ -37,9 +19,9 @@ import {
 import { TransactionApi } from "./client/TransactionApi";
 import { serializeTransaction } from "./client/TransactionSerialization";
 import { ConnectedWallet } from "./ConnectedWallet";
-import { deserializeContractState } from "../playground/average-salary-frontend/src/main/contract/AverageSalaryGenerated";
-import { BigEndianByteOutput } from "@secata-public/bitmanipulation-ts";
-import { Rpc, TransactionPayload } from "./client/TransactionData";
+// import { deserializeContractState } from "../contract/AverageSalaryGenerated";
+// import { BigEndianByteOutput } from "@secata-public/bitmanipulation-ts";
+// import { Rpc, TransactionPayload } from "./client/TransactionData";
 import { ec } from "elliptic";
 
 interface MetamaskRequestArguments {
@@ -318,11 +300,22 @@ const handleWalletConnect = (connect: Promise<ConnectedWallet>) => {
 
       // Fix UI
       setConnectionStatus(`Logged in: ${userAccount.address}`);
+      console.log("1...");
       toggleVisibility("#wallet-connect");
+      console.log("2...");
+
       toggleVisibility("#metamask-connect");
+      console.log("3...");
       toggleVisibility("#private-key-connect");
+      console.log("4...");
+
       toggleVisibility("#wallet-disconnect");
-      updateInteractionVisibility();
+      console.log("5...");
+
+      // updateInteractionVisibility();
+      console.log("6...");
+
+      window.location.replace("/landing")
     })
     .catch((error) => {
       if ("message" in error) {
@@ -345,7 +338,7 @@ export const disconnectWalletClick = () => {
   toggleVisibility("#metamask-connect");
   toggleVisibility("#private-key-connect");
   toggleVisibility("#wallet-disconnect");
-  updateInteractionVisibility();
+  // updateInteractionVisibility();
 };
 
 /**
