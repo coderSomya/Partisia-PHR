@@ -85,8 +85,9 @@ export default function Message() {
               backgroundColor: "#EDF9FF",
               position: "absolute",
               top: "0",
+              bottom: "2",
               left: "0",
-              width: "41vw",
+              width: "40vw",
               padding: "0.5vw",
               fontSize: "1vw",
             }}
@@ -97,34 +98,36 @@ export default function Message() {
             onChange={(e) => setMailId(e.target.value)}
             variant="standard"
             label="To"
-            sx={{ width: "39vw", marginTop: "1vw" }}
+            sx={{ width: "39vw", marginTop: "2vw" }}
           />
           <br />
           <TextField
             variant="standard"
             label="Subject"
-            sx={{ width: "39vw" }}
+            sx={{ width: "39vw", marginTop: "1vw" }}
           />
           <br />
           <TextField
             onChange={(e) => setMessage(e.target.value)}
             multiline
             rows={12}
-            sx={{ width: "39vw", "& fieldset": { border: "none" } }}
+            sx={{ width: "39vw", "& fieldset": { border: "n" } }}
           />
           <br />
-          <Button
-            onClick={inbox}
-            variant="contained"
-            sx={{
-              borderRadius: "6vw",
-              fontSize: "1vw",
-              width: "4vw",
-              height: "3vw",
-            }}
-          >
-            Send
-          </Button>
+          <hr style={{ margin: "1vw 0" }} />
+            <Button
+              onClick={send}
+              variant="contained"
+              sx={{
+                borderRadius: "2vw",
+                fontSize: "1vw",
+                width: "5vw",
+                height: "3vw",
+                float: "right",
+              }}
+            >
+              Send
+            </Button>
         </Box>
       </Modal>
     </div>
