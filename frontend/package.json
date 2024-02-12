@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.9",
     "@partisiablockchain/abi-client": "^3.30.0",
     "@partisiablockchain/zk-client": "^4.3.0",
+    "@pinata/sdk": "^2.1.0",
     "@secata-public/bitmanipulation-ts": "^3.0.7",
     "@types/bn.js": "^5.1.5",
     "@types/elliptic": "^6.4.18",

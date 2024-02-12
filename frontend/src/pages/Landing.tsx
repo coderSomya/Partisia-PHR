@@ -25,6 +25,9 @@ const navigate = useNavigate();
     window.location.replace("/")
   }
    },[])
+
+   const [file, setFile] = React.useState<File | null>(null);
+
   return (
     <>
   

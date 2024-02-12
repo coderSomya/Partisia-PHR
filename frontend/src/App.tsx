@@ -7,6 +7,7 @@ import Admin from "./pages/Admin/Admin";
 import PatientData from "./pages/Admin/PatientData";
 import DoctorData from "./pages/Admin/DoctorData";
 import ConnectWallet from "./pages/ConnectWallet";
+import Uploader from "./Components/Uploader";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/landing" element = { <Landing/> }/>
         <Route path="/doctor" element={<Doctor/>}/>
         <Route path="/patient" element={<Patient/>}/>
+        <Route path="/upload" element={<Uploader/>}/> 
       </Routes>
     </Router>
     </>
