@@ -69,14 +69,14 @@ export default function Navbar(props) {
                     width: "1.3vw",
                     height: "1.3vw",
                     alignItems: "center",
-                    marginLeft: "15px",
+                    marginLeft: "22px",
                   }}
                 />
                 <input
                   onChange={(e) => props.setSearch(e.target.value)}
                   placeholder="Search"
                   style={{
-                    marginLeft: "3vw",
+                    marginLeft: "1vw",
                     height: "3vw",
                     width: "45vw",
                     backgroundColor: "#E4EFFA",
