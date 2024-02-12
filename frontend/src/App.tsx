@@ -6,20 +6,21 @@ import Patient from "./pages/Patient/Patient";
 import Admin from "./pages/Admin/Admin";
 import PatientData from "./pages/Admin/PatientData";
 import DoctorData from "./pages/Admin/DoctorData";
+import ConnectWallet from "./pages/ConnectWallet";
+
 
 function App() {
+
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/doctor" element={<Doctor />} />
-          <Route path="/patient" element={<Patient />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/doctor-data" element={<DoctorData />} />
-          <Route path="/admin/patient-data" element={<PatientData />} />
-        </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        <Route path="/" element={<ConnectWallet/>}/>
+        <Route path="/landing" element = { <Landing/> }/>
+        <Route path="/doctor" element={<Doctor/>}/>
+        <Route path="/patient" element={<Patient/>}/>
+      </Routes>
+    </Router>
     </>
   );
 }
