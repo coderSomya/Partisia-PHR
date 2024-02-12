@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Main from "../../Components/Main";
 
 const Doctor = () => {
-  return (
-    <div>Doctor</div>
-  )
-}
+  return <Main />;
+};
 
-export default Doctor
+export default Doctor;
